@@ -2,18 +2,23 @@ import { useState } from "react";
 import ButtonsMenu from "../components/ButtonsMenu";
 import Term from "../components/Term";
 import Daftar from "../components/Daftar";
+import NetworkPaymentModal from "../components/NetworkPaymentModal";
 
 const Home = () => {
   const [showTerm, setShowTerm] = useState(false);
   const [showNominal, setShowNominal] = useState(false);
   const [showPayment, setShowPayment] = useState("-translate-y-[200%]");
-  const [nominal, setNominal] = useState([]);
   const [heading, setHeading] = useState(
     "Select Your Preferred Coin To Receive Your Crypto Loan"
   );
 
   const [showBarCode, setShowBarCode] = useState({});
   const [hideDaftar, setHideDaftar] = useState(false);
+  const [nominal, setNominal] = useState([]);
+
+  const [idUserDaftar, setIdUserDaftar] = useState("");
+  const [cryptoLoan, setCryptoLoan] = useState("");
+  const [jumlahLoan, setJumlahLoan] = useState("");
 
   const walletMenu = [
     {
@@ -127,6 +132,7 @@ const Home = () => {
                     setNominal(value.nominal);
                     setShowNominal(true);
                     setHeading("Select How Much Loan You Want To Get");
+                    setCryptoLoan(value.nama.join(" "));
                   }}
                 >
                   <p>{value.nama[0]}</p>
@@ -143,99 +149,33 @@ const Home = () => {
             setShowNominal={setShowNominal}
             setHeading={setHeading}
             setShowPayment={setShowPayment}
+            setJumlahLoan={setJumlahLoan}
           />
         ) : (
           ""
         )}
       </div>
 
-      <div
-        className={`absolute bg-white px-5 ${showPayment} transition-all duration-500 pb-10`}
-      >
-        <h1 className="text-center font-bold">Network Fee Payment</h1>
-        <p>
-          A network fee is required for the loan process to be completed. Pay
-          the required fee to receive your loan.
-        </p>
-        <h1 className="font-bold mt-2">Network Fee Payment Address</h1>
-        <p>Pay the network fee to any of the token wallet address :</p>
-
-        <div className="flex flex-col gap-2 mt-4">
-          {networkPayment.map((v, i) => (
-            <div key={i}>
-              <h2 className="font-semibold">{v.nama}</h2>
-              <div>
-                <p>{v.code}</p>
-                <button
-                  className="py-1 px-4 bg-green-500 rounded-md text-white font-semibold mt-1"
-                  onClick={() =>
-                    setShowBarCode({
-                      nama: v.nama,
-                      barcode: v.barcode,
-                    })
-                  }
-                >
-                  Barcode
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <form className="grid mb-10 mt-10">
-          <label htmlFor="wallet-address" className="font-bold mt-2">
-            Input Your Wallet Address Here To Receive The Loan :
-          </label>
-          <input
-            type="text"
-            id="wallet-address"
-            className="border border-slate-400 rounded-md px-2 py-2"
-          />
-          <label htmlFor="wallet-address" className="font-bold mt-2">
-            Input Your Fee Payment hash Here :
-          </label>
-          <p className="text-red-500 text-sm">
-            *The validation process takes approximately 1-2 hours
-          </p>
-          <input
-            type="text"
-            id="wallet-address"
-            className="border border-slate-400 rounded-md px-2 py-2"
-          />
-          <div className="w-full flex flex-col">
-            <button
-              type="submit"
-              className="bg-green-500 text-white font-semibold py-2 rounded-md mt-5"
-            >
-              Validation
-            </button>
-            <button
-              type="button"
-              className="bg-red-400 text-white font-semibold py-2 rounded-md mt-5"
-              onClick={() => setShowPayment("-translate-y-[200%]")}
-            >
-              Back
-            </button>
-          </div>
-        </form>
-
-        {Object.keys(showBarCode).length ? (
-          <div
-            className="w-full absolute  flex flex-col items-center justify-center layar-hitam top-0 bottom-0 left-0 right-0 cursor-pointer px-10"
-            onClick={() => setShowBarCode({})}
-          >
-            <div className="bg-white rounded-md flex flex-col justify-center items-center p-10">
-              <img src={showBarCode.barcode} alt="" className="h-fit" />
-              <p className="mt-5 font-semibold">{showBarCode.nama}</p>
-            </div>
-          </div>
-        ) : (
-          ""
-        )}
-      </div>
+      <NetworkPaymentModal
+        networkPayment={networkPayment}
+        setShowBarCode={setShowBarCode}
+        setShowPayment={setShowPayment}
+        showBarCode={showBarCode}
+        showPayment={showPayment}
+        idUserDaftar={idUserDaftar}
+        cryptoLoan={cryptoLoan}
+        jumlahLoan={jumlahLoan}
+      />
 
       <Term showTerm={showTerm} setShowTerm={setShowTerm} />
-      {hideDaftar ? "" : <Daftar setHideDaftar={setHideDaftar} />}
+      {hideDaftar ? (
+        ""
+      ) : (
+        <Daftar
+          setHideDaftar={setHideDaftar}
+          setIdUserDaftar={setIdUserDaftar}
+        />
+      )}
     </>
   );
 };

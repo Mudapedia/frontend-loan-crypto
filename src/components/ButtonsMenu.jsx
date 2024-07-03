@@ -5,6 +5,7 @@ const ButtonsMenu = ({
   setShowNominal,
   setHeading,
   setShowPayment,
+  setJumlahLoan,
 }) => {
   return (
     <div>
@@ -14,7 +15,10 @@ const ButtonsMenu = ({
             <div
               key={index}
               className={`px-2 py-5 bg-slate-400 rounded-md w-full text-center cursor-pointer`}
-              onClick={() => setShowPayment("")}
+              onClick={() => {
+                setShowPayment("");
+                setJumlahLoan(value);
+              }}
             >
               <p>{value}</p>
             </div>
