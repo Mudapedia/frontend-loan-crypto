@@ -18,19 +18,43 @@ const Home = () => {
   const walletMenu = [
     {
       nama: ["USDT", "Tether USDT"],
-      nominal: ["1000 USDT", "2000 USDT", "3000 USDT", "4000 USDT"],
+      nominal: [
+        "Fee $1000 Get 100,000 USDT",
+        "Fee $2000 Get 350,000 USDT",
+        "Fee $4000 Get 600,000 USDT",
+        "Fee $6000 Get 800,000 USDT",
+        "Fee $10,000 Get 1,200,000 USDT",
+        "Fee $20,000 Get 4,000,000 USDT",
+        "Fee $40,000 Get 7,500,000 USDT",
+        "Fee $50,000 Get 1,000,000,000 USDT",
+      ],
     },
     {
       nama: ["BNB", "BNB Smart Chain"],
-      nominal: ["1000 BNB", "2000 BNB", "3000 BNB", "4000 BNB"],
+      nominal: [
+        "Fee 5 BNB Get 1000 BNB",
+        "Fee 10 BNB get 2000 BNB",
+        "Fee 15 BNB Get 3000 BNB",
+        "Fee 20 BNB Get 4000 BNB",
+      ],
     },
     {
       nama: ["BTC", "Bitcoin"],
-      nominal: ["1000 BTC", "2000 BTC", "3000 BTC", "4000 BTC"],
+      nominal: [
+        "Fee 0,5 BTC Get 1000 BTC",
+        "Fee 1 BTC Get 2000 BTC",
+        "Fee 1,5 BTC Get 3000 BTC",
+        "Fee 2 BTC Get 4000 BTC",
+      ],
     },
     {
       nama: ["ETH", "Ethereum"],
-      nominal: ["1000 ETH", "2000 ETH", "3000 ETH", "4000 ETH"],
+      nominal: [
+        "Fee 4 ETH Get 1000 ETH",
+        "Fee 7 ETH Get 2000 ETH",
+        "Fee 10 ETH Get 3000 ETH",
+        "Fee 12 ETH Get 4000 ETH",
+      ],
     },
   ];
 
@@ -75,16 +99,16 @@ const Home = () => {
   return (
     <>
       <div className="text-center">
-        <h1>Selamat Datang Di Loan Crypto</h1>
+        <h1>Welcome to Loan Crypto</h1>
         <p>
-          Cek{" "}
+          Check the{" "}
           <span
             className="text-blue-500 cursor-pointer"
             onClick={() => {
               setShowTerm(!showTerm);
             }}
           >
-            Syarat dan ketentuan
+            Terms and conditions
           </span>
         </p>
         <p>{heading}</p>
@@ -171,7 +195,7 @@ const Home = () => {
             Input Your Fee Payment hash Here :
           </label>
           <p className="text-red-500 text-sm">
-            *Proses validasi membutuhkan waktu sekitar 1-2 jam
+            *The validation process takes approximately 1-2 hours
           </p>
           <input
             type="text"
@@ -183,14 +207,14 @@ const Home = () => {
               type="submit"
               className="bg-green-500 text-white font-semibold py-2 rounded-md mt-5"
             >
-              Send
+              Validation
             </button>
             <button
               type="button"
               className="bg-red-400 text-white font-semibold py-2 rounded-md mt-5"
               onClick={() => setShowPayment("-translate-y-[200%]")}
             >
-              Kembali
+              Back
             </button>
           </div>
         </form>

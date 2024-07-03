@@ -34,7 +34,6 @@ const Daftar = ({ setHideDaftar }) => {
             type="text"
             id="username"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 "
-            placeholder="name@flowbite.com"
             required
             onChange={(e) => setUsername(e.target.value)}
           />
