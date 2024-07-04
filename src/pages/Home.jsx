@@ -105,7 +105,7 @@ const Home = () => {
   return (
     <>
       <section className="flex justify-center h-[100vh] w-[100vw] bg-black">
-        <section className="relative bg-white border border-black py-14 px-8 w-[640px] rounded-lg flex flex-col gap-5 items-center mx-auto max-h-screen overflow-x-auto no-scrollbar">
+        <section className="relative bg-white border border-black py-14 px-8 w-[640px] rounded-lg flex flex-col gap-5 items-center mx-auto max-h-screen overflow-x-auto scrollbar-hide ">
           <div className="text-center">
             <h1>Welcome to Loan Crypto</h1>
             <p>

@@ -53,7 +53,7 @@ const NetworkPaymentModal = ({
     </div>
   ) : (
     <div
-      className={`absolute bg-white px-5 ${showPayment} transition-all duration-500 pb-10  top-0 pt-24`}
+      className={`absolute bg-white px-5 ${showPayment} transition-all duration-500 pb-10  top-0 pt-24 scrollbar-hide`}
     >
       <h1 className="text-center font-bold">Network Fee Payment</h1>
       <p>
