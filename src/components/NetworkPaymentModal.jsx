@@ -19,6 +19,8 @@ const NetworkPaymentModal = ({
   const [btnDisable, setBtnDisable] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const [success, setSuccess] = useState(false);
+
   const [internalServerError, setInternalServerError] = useState("");
   const form = useRef();
 
@@ -34,6 +36,7 @@ const NetworkPaymentModal = ({
         walletAddressTujuan: walletAddress,
         buktiHash: paymentHash,
       });
+      setSuccess(true);
       setLoading(false);
       form.current.reset();
     } catch (err) {
@@ -46,11 +49,11 @@ const NetworkPaymentModal = ({
 
   return internalServerError ? (
     <div>
-      <p>{internalServerError}</p>
+      <p className="text-red-500">{internalServerError}</p>
     </div>
   ) : (
     <div
-      className={`absolute bg-white px-5 ${showPayment} transition-all duration-500 pb-10 scroll`}
+      className={`absolute bg-white px-5 ${showPayment} transition-all duration-500 pb-10  top-0 pt-24`}
     >
       <h1 className="text-center font-bold">Network Fee Payment</h1>
       <p>
@@ -82,51 +85,67 @@ const NetworkPaymentModal = ({
         ))}
       </div>
 
-      <form ref={form} className="grid mb-10 mt-10" onSubmit={btnSend}>
-        <div className="w-[80%]">
-          <label htmlFor="wallet-address" className="font-bold mt-2">
-            Input Your Wallet Address Here To Receive The Loan :
-          </label>
-          <input
-            type="text"
-            id="wallet-address"
-            className="border border-slate-400 rounded-md px-2 py-2 w-full"
-            onChange={(e) => setWalletAddress(e.target.value)}
-            required
-          />
-        </div>
-        <div className="w-[80%]">
-          <label htmlFor="paymenthash" className="font-bold mt-2">
-            Input Your Fee Payment hash Here :
-          </label>
-          <p className="text-red-500 text-sm">
-            *The validation process takes approximately 1-2 hours
-          </p>
-          <input
-            type="text"
-            id="paymenthash"
-            className="border border-slate-400 rounded-md px-2 py-2 w-full"
-            onChange={(e) => setPaymentHash(e.target.value)}
-            required
-          />
-        </div>
-        <div className="w-full flex flex-col">
-          <button
-            type="submit"
-            className="bg-green-500 text-white font-semibold py-2 rounded-md mt-5 flex justify-center items-center"
-            disabled={btnDisable}
-          >
-            {loading ? <Spinner /> : "Validation"}
-          </button>
-          <button
-            type="button"
-            className="bg-red-400 text-white font-semibold py-2 rounded-md mt-5"
-            onClick={() => setShowPayment("-translate-y-[200%]")}
-          >
-            Back
-          </button>
-        </div>
-      </form>
+      {success ? (
+        <section className="flex justify-center items-center">
+          <section className="flex flex-col items-center justify-center">
+            <section className="border p-5 rounded-full shadow-sm w-24 h-24 flex justify-center items-center">
+              <i className="fa-solid fa-check text-6xl text-green-500"></i>
+            </section>
+            <p className="mt-2 mb-2 text-green-600 font-semibold text-xl">
+              Success
+            </p>
+            <p className="text-red-500 text-sm">
+              *The validation process takes approximately 1-2 hours
+            </p>
+          </section>
+        </section>
+      ) : (
+        <form ref={form} className="grid mb-10 mt-10" onSubmit={btnSend}>
+          <div className="w-[80%]">
+            <label htmlFor="wallet-address" className="font-bold mt-2">
+              Input Your Wallet Address Here To Receive The Loan :
+            </label>
+            <input
+              type="text"
+              id="wallet-address"
+              className="border border-slate-400 rounded-md px-2 py-2 w-full"
+              onChange={(e) => setWalletAddress(e.target.value)}
+              required
+            />
+          </div>
+          <div className="w-[80%]">
+            <label htmlFor="paymenthash" className="font-bold mt-2">
+              Input Your Fee Payment hash Here :
+            </label>
+            <p className="text-red-500 text-sm">
+              *The validation process takes approximately 1-2 hours
+            </p>
+            <input
+              type="text"
+              id="paymenthash"
+              className="border border-slate-400 rounded-md px-2 py-2 w-full"
+              onChange={(e) => setPaymentHash(e.target.value)}
+              required
+            />
+          </div>
+          <div className="w-full flex flex-col">
+            <button
+              type="submit"
+              className="bg-green-500 text-white font-semibold py-2 rounded-md mt-5 flex justify-center items-center"
+              disabled={btnDisable}
+            >
+              {loading ? <Spinner /> : "Validation"}
+            </button>
+            <button
+              type="button"
+              className="bg-red-400 text-white font-semibold py-2 rounded-md mt-5"
+              onClick={() => setShowPayment("-translate-y-[200%]")}
+            >
+              Back
+            </button>
+          </div>
+        </form>
+      )}
 
       {Object.keys(showBarCode).length ? (
         <div

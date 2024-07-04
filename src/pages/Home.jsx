@@ -3,6 +3,7 @@ import ButtonsMenu from "../components/ButtonsMenu";
 import Term from "../components/Term";
 import Daftar from "../components/Daftar";
 import NetworkPaymentModal from "../components/NetworkPaymentModal";
+import ButtonKontak from "../components/ButtonKontak";
 
 const Home = () => {
   const [showTerm, setShowTerm] = useState(false);
@@ -13,7 +14,7 @@ const Home = () => {
   );
 
   const [showBarCode, setShowBarCode] = useState({});
-  const [hideDaftar, setHideDaftar] = useState(false);
+  const [hideDaftar, setHideDaftar] = useState(true);
   const [nominal, setNominal] = useState([]);
 
   const [idUserDaftar, setIdUserDaftar] = useState("");
@@ -103,79 +104,85 @@ const Home = () => {
 
   return (
     <>
-      <div className="text-center">
-        <h1>Welcome to Loan Crypto</h1>
-        <p>
-          Check the{" "}
-          <span
-            className="text-blue-500 cursor-pointer"
-            onClick={() => {
-              setShowTerm(!showTerm);
-            }}
-          >
-            Terms and conditions
-          </span>
-        </p>
-        <p>{heading}</p>
-      </div>
-      <div className="w-full">
-        {showNominal == true ? (
-          ""
-        ) : (
-          <div className="grid grid-cols-2 w-full gap-5">
-            {walletMenu.map((value, index) => {
-              return (
-                <div
-                  key={index}
-                  className={`px-2 py-5 bg-slate-400 rounded-md w-full text-center cursor-pointer`}
-                  onClick={() => {
-                    setNominal(value.nominal);
-                    setShowNominal(true);
-                    setHeading("Select How Much Loan You Want To Get");
-                    setCryptoLoan(value.nama.join(" "));
-                  }}
-                >
-                  <p>{value.nama[0]}</p>
-                  <p>{value.nama[1]}</p>
-                </div>
-              );
-            })}
+      <section className="flex justify-center h-[100vh] w-[100vw] bg-black">
+        <section className="relative bg-white border border-black py-14 px-8 w-[640px] rounded-lg flex flex-col gap-5 items-center mx-auto max-h-screen overflow-x-auto no-scrollbar">
+          <div className="text-center">
+            <h1>Welcome to Loan Crypto</h1>
+            <p>
+              Check the{" "}
+              <span
+                className="text-blue-500 cursor-pointer"
+                onClick={() => {
+                  setShowTerm(!showTerm);
+                }}
+              >
+                Terms and conditions
+              </span>
+            </p>
+            <p>{heading}</p>
           </div>
-        )}
-        {showNominal == true ? (
-          <ButtonsMenu
-            nominal={nominal}
-            setNominal={setNominal}
-            setShowNominal={setShowNominal}
-            setHeading={setHeading}
+          <div className="w-full">
+            {showNominal == true ? (
+              ""
+            ) : (
+              <div className="grid grid-cols-2 w-full gap-5">
+                {walletMenu.map((value, index) => {
+                  return (
+                    <div
+                      key={index}
+                      className={`px-2 py-5 bg-slate-400 rounded-md w-full text-center cursor-pointer`}
+                      onClick={() => {
+                        setNominal(value.nominal);
+                        setShowNominal(true);
+                        setHeading("Select How Much Loan You Want To Get");
+                        setCryptoLoan(value.nama.join(" "));
+                      }}
+                    >
+                      <p>{value.nama[0]}</p>
+                      <p>{value.nama[1]}</p>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+            {showNominal == true ? (
+              <ButtonsMenu
+                nominal={nominal}
+                setNominal={setNominal}
+                setShowNominal={setShowNominal}
+                setHeading={setHeading}
+                setShowPayment={setShowPayment}
+                setJumlahLoan={setJumlahLoan}
+              />
+            ) : (
+              ""
+            )}
+          </div>
+
+          <NetworkPaymentModal
+            networkPayment={networkPayment}
+            setShowBarCode={setShowBarCode}
             setShowPayment={setShowPayment}
-            setJumlahLoan={setJumlahLoan}
+            showBarCode={showBarCode}
+            showPayment={showPayment}
+            idUserDaftar={idUserDaftar}
+            cryptoLoan={cryptoLoan}
+            jumlahLoan={jumlahLoan}
           />
-        ) : (
-          ""
-        )}
-      </div>
 
-      <NetworkPaymentModal
-        networkPayment={networkPayment}
-        setShowBarCode={setShowBarCode}
-        setShowPayment={setShowPayment}
-        showBarCode={showBarCode}
-        showPayment={showPayment}
-        idUserDaftar={idUserDaftar}
-        cryptoLoan={cryptoLoan}
-        jumlahLoan={jumlahLoan}
-      />
+          <Term showTerm={showTerm} setShowTerm={setShowTerm} />
+          {hideDaftar ? (
+            ""
+          ) : (
+            <Daftar
+              setHideDaftar={setHideDaftar}
+              setIdUserDaftar={setIdUserDaftar}
+            />
+          )}
 
-      <Term showTerm={showTerm} setShowTerm={setShowTerm} />
-      {hideDaftar ? (
-        ""
-      ) : (
-        <Daftar
-          setHideDaftar={setHideDaftar}
-          setIdUserDaftar={setIdUserDaftar}
-        />
-      )}
+          <ButtonKontak />
+        </section>
+      </section>
     </>
   );
 };
