@@ -14,7 +14,7 @@ const Home = () => {
   );
 
   const [showBarCode, setShowBarCode] = useState({});
-  const [hideDaftar, setHideDaftar] = useState(true);
+  const [hideDaftar, setHideDaftar] = useState(false);
   const [nominal, setNominal] = useState([]);
 
   const [idUserDaftar, setIdUserDaftar] = useState("");
