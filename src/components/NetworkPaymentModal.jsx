@@ -138,6 +138,7 @@ const NetworkPaymentModal = ({
             </button>
             <button
               type="button"
+              disabled={btnDisable}
               className="bg-red-400 text-white font-semibold py-2 rounded-md mt-5"
               onClick={() => setShowPayment("-translate-y-[200%]")}
             >
