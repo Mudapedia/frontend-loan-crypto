@@ -7,9 +7,9 @@ const Admin = () => {
         <title>Admin</title>
       </Helmet>
       <section className="flex justify-center h-[100vh] w-[100vw] bg-black">
-        <section className="relative bg-white border border-black py-14 px-8 w-[640px] rounded-lg flex flex-col gap-5 items-center mx-auto max-h-screen overflow-x-auto no-scrollbar">
-        <div className="flex h-full overflow-x-scroll">
-          <div className="min-w-full border border-slate-300 px-5">
+        <section className="relative bg-white border border-black py-14 px-8 w-[640px] rounded-lg flex flex-col gap-5 items-center mx-auto max-h-screen">
+        <div className="flex h-full overflow-x-clip scrollbar-hide">
+          <div className="min-w-full border border-slate-300 px-5 overflow-y-scroll">
             <h1 className="text-center mb-5">admin page</h1>
             {array.map((value, index)=>{
               return(
