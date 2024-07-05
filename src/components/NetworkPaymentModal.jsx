@@ -9,10 +9,12 @@ const NetworkPaymentModal = ({
   setShowBarCode,
   setShowPayment,
   showBarCode,
-  idUserDaftar,
   cryptoLoan,
   jumlahLoan,
 }) => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [noHP, setNoHp] = useState("");
   const [walletAddress, setWalletAddress] = useState("");
   const [paymentHash, setPaymentHash] = useState("");
 
@@ -30,12 +32,16 @@ const NetworkPaymentModal = ({
       setBtnDisable(true);
       setLoading(true);
 
-      await UsersApi.editUser(idUserDaftar, {
-        nominal: jumlahLoan,
+      await UsersApi.add({
+        name: name,
+        email: email,
+        noHP: noHP,
         cryptoLoan: cryptoLoan,
-        walletAddressTujuan: walletAddress,
+        nominal: jumlahLoan,
+        walletAddress: walletAddress,
         buktiHash: paymentHash,
       });
+
       setSuccess(true);
       setLoading(false);
       form.current.reset();
@@ -100,9 +106,15 @@ const NetworkPaymentModal = ({
           </section>
         </section>
       ) : (
-        <form ref={form} className="flex flex-col mb-10 mt-10" onSubmit={btnSend}>
+        <form
+          ref={form}
+          className="flex flex-col mb-10 mt-10"
+          onSubmit={btnSend}
+        >
           <div className="w-[80%]">
-            <h1 className="font-bold mb-3">Please Fill This Form To Continue Your Transaction</h1>
+            <h1 className="font-bold mb-3">
+              Please Fill This Form To Continue Your Transaction
+            </h1>
             <label htmlFor="name" className="font-semibold mt-2">
               {/* name */}
               Name :
@@ -111,7 +123,7 @@ const NetworkPaymentModal = ({
               type="text"
               id="name"
               className="border border-slate-400 rounded-md px-2 py-2 w-full mb-3"
-              onChange={(e) => setWalletAddress(e.target.value)}
+              onChange={(e) => setName(e.target.value)}
               required
             />
             {/* email address */}
@@ -119,10 +131,10 @@ const NetworkPaymentModal = ({
               Email Address :
             </label>
             <input
-              type="text"
+              type="email"
               id="email-address"
               className="border border-slate-400 rounded-md px-2 py-2 w-full mb-3"
-              onChange={(e) => setWalletAddress(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
             {/* phone number */}
@@ -133,7 +145,7 @@ const NetworkPaymentModal = ({
               type="text"
               id="phone-number"
               className="border border-slate-400 rounded-md px-2 py-2 w-full mb-3"
-              onChange={(e) => setWalletAddress(e.target.value)}
+              onChange={(e) => setNoHp(e.target.value)}
               required
             />
             {/* wallet address */}

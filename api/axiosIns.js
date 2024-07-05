@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosIns = axios.create({
-  baseURL: "http://localhost:3000/api",
+  baseURL: "https://backend-loan-crypto.vercel.app/api",
   withCredentials: true,
 });
 

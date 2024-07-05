@@ -1,7 +1,6 @@
 import { useState } from "react";
 import ButtonsMenu from "../components/ButtonsMenu";
 import Term from "../components/Term";
-// import Daftar from "../components/Daftar";
 import NetworkPaymentModal from "../components/NetworkPaymentModal";
 import ButtonKontak from "../components/ButtonKontak";
 import { HelmetProvider, Helmet } from "react-helmet-async";
@@ -15,10 +14,8 @@ const Home = () => {
   );
 
   const [showBarCode, setShowBarCode] = useState({});
-  // const [hideDaftar, setHideDaftar] = useState(false);
   const [nominal, setNominal] = useState([]);
 
-  const [idUserDaftar, setIdUserDaftar] = useState("");
   const [cryptoLoan, setCryptoLoan] = useState("");
   const [jumlahLoan, setJumlahLoan] = useState("");
 
@@ -170,20 +167,11 @@ const Home = () => {
               setShowPayment={setShowPayment}
               showBarCode={showBarCode}
               showPayment={showPayment}
-              idUserDaftar={idUserDaftar}
               cryptoLoan={cryptoLoan}
               jumlahLoan={jumlahLoan}
             />
 
             <Term showTerm={showTerm} setShowTerm={setShowTerm} />
-            {/* {hideDaftar ? (
-              ""
-            ) : (
-              <Daftar
-                setHideDaftar={setHideDaftar}
-                setIdUserDaftar={setIdUserDaftar}
-              />
-            )} */}
 
             <ButtonKontak />
           </section>

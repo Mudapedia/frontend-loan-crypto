@@ -1,14 +1,17 @@
 import { HelmetProvider, Helmet } from "react-helmet-async";
 import { useEffect, useState } from "react";
 import AdminAPi from "../../api/admin";
-import { data } from "autoprefixer";
 
 const Admin = () => {
   const [transactionFinish, setTransactionFinish] = useState([]);
+  const [transactionNotFinish, setTransactionNotFinish] = useState([]);
 
   useEffect(() => {
     AdminAPi.getTransactionFinish().then(({ data }) => {
       setTransactionFinish(data.data);
+    });
+    AdminAPi.getTransactionNotFinish().then(({ data }) => {
+      setTransactionNotFinish(data.data);
     });
   }, []);
 
@@ -23,7 +26,7 @@ const Admin = () => {
             <div className="min-w-full border border-slate-300 px-5 overflow-y-auto snap-center">
               <h1 className="text-center mb-5 font-bold">Admin page</h1>
               <section className="flex flex-col gap-5">
-                {transactionFinish.map((v, i) => (
+                {transactionNotFinish.map((v, i) => (
                   <section key={i} className="flex flex-col gap-2">
                     <table className="w-full text-sm text-left rtl:text-right  ">
                       <thead>
@@ -131,21 +134,106 @@ const Admin = () => {
             </div>
             <div className="min-w-full border border-slate-300 snap-center">
               <h1>admin page 2</h1>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam
-                asperiores aut nam explicabo beatae incidunt laboriosam modi,
-                quidem, doloribus dolorum impedit minima aperiam quae odit
-                voluptatem expedita? Beatae minus libero, vero commodi neque
-                labore exercitationem dolor quasi possimus nesciunt pariatur
-                vitae! Deleniti reprehenderit aut provident veritatis voluptas
-                accusamus, ducimus labore, commodi inventore, fugiat repudiandae
-                perferendis ex. Dignissimos obcaecati dolor eveniet totam natus
-                corporis eius animi? Alias libero possimus quam at ut ipsa
-                veritatis enim! Deleniti, asperiores? Quidem aliquam beatae
-                architecto pariatur enim tenetur sit iure quisquam incidunt
-                laboriosam quas, maxime fugiat illum sint nulla veritatis eaque
-                sunt voluptas aperiam voluptate?
-              </p>
+              <section className="flex flex-col gap-5">
+                {transactionFinish.map((v, i) => (
+                  <section key={i} className="flex flex-col gap-2">
+                    <table className="w-full text-sm text-left rtl:text-right  ">
+                      <thead>
+                        <tr>
+                          <th scope="col" className="px-6 py-3">
+                            Transaksi ke {i + 1}
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr className="bg-white border-b ">
+                          <th
+                            scope="row"
+                            className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
+                          >
+                            Nama
+                          </th>
+                          <td className="px-6 py-4">{v.name}</td>
+                        </tr>
+                        <tr className="bg-white border-b ">
+                          <th
+                            scope="row"
+                            className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
+                          >
+                            Email
+                          </th>
+                          <td className="px-6 py-4">{v.email}</td>
+                        </tr>
+                        <tr className="bg-white border-b ">
+                          <th
+                            scope="row"
+                            className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
+                          >
+                            No HP
+                          </th>
+                          <td className="px-6 py-4">{v.noHP}</td>
+                        </tr>
+                        <tr className="bg-white border-b ">
+                          <th
+                            scope="row"
+                            className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
+                          >
+                            Wallet Address
+                          </th>
+                          <td className="px-6 py-4">{v.walletAddress}</td>
+                        </tr>
+                        <tr className="bg-white border-b ">
+                          <th
+                            scope="row"
+                            className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
+                          >
+                            Crypto Loan
+                          </th>
+                          <td className="px-6 py-4">{v.cryptoLoan}</td>
+                        </tr>
+                        <tr className="bg-white border-b ">
+                          <th
+                            scope="row"
+                            className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
+                          >
+                            Nominal
+                          </th>
+                          <td className="px-6 py-4">{v.nominal}</td>
+                        </tr>
+                        <tr className="bg-white border-b ">
+                          <th
+                            scope="row"
+                            className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
+                          >
+                            Bukti Hash
+                          </th>
+                          <td className="px-6 py-4">{v.buktiHash}</td>
+                        </tr>
+                        <tr className="bg-white border-b ">
+                          <th
+                            scope="row"
+                            className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
+                          >
+                            Status Transaksi
+                          </th>
+                          <td className="px-6 py-4">
+                            {v.statusTransaksi ? "Selesai" : "Belum Selesai"}
+                          </td>
+                        </tr>
+                        <tr className="bg-white border-b ">
+                          <th
+                            scope="row"
+                            className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
+                          >
+                            Tanggal
+                          </th>
+                          <td className="px-6 py-4">{v.created_at}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </section>
+                ))}
+              </section>
             </div>
           </div>
         </section>
