@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Spinner from "../components/Spinner";
+import Auth from "../../api/auth";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState("fa-eye");
@@ -7,21 +9,40 @@ const Login = () => {
   const [btnDisable, setBtnDisable] = useState(false);
   const [message, setMessage] = useState({});
 
-  const btnSubmit = (e) => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const form = useRef();
+  const redirect = useNavigate();
+
+  const btnSubmit = async (e) => {
     try {
       e.preventDefault();
       setLoading(true);
       setBtnDisable(true);
 
-      setTimeout(() => {
-        setLoading(false);
-        setMessage({
-          msg: "Berhasil Login",
-          color: "text-green-500",
-        });
-      }, 3000);
+      await Auth.login({
+        username,
+        password,
+      });
+
+      setLoading(false);
+      setMessage({
+        msg: "Berhasil Login",
+        color: "text-green-500",
+      });
+      form.current.reset();
+
+      // setTimeout(() => {
+      //   redirect("/admin");
+      // }, 1000);
     } catch (err) {
-      console.log(err);
+      setBtnDisable(false);
+      setLoading(false);
+      setMessage({
+        msg: err.response.data.errors.join("\n"),
+        color: "text-red-500",
+      });
     }
   };
 
@@ -35,7 +56,7 @@ const Login = () => {
           ) : (
             ""
           )}
-          <form className="mt-10" onSubmit={btnSubmit}>
+          <form ref={form} className="mt-10" onSubmit={btnSubmit}>
             <div className="mb-5">
               <label
                 htmlFor="username"
@@ -48,6 +69,7 @@ const Login = () => {
                 id="username"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
                 required
+                onChange={(e) => setUsername(e.target.value)}
               />
             </div>
             <div className="mb-5">
@@ -63,6 +85,7 @@ const Login = () => {
                   id="password"
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
                   required
+                  onChange={(e) => setPassword(e.target.value)}
                 />
                 <i
                   className={`fa-solid ${showPassword} text-xl cursor-pointer`}

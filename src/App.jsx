@@ -3,6 +3,7 @@ import ContactUs from "./pages/ContactUs";
 import Home from "./pages/Home";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
+import OnlyLogin from "./auth/OnlyLogin";
 
 function App() {
   return (
@@ -10,7 +11,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/contact" element={<ContactUs />} />
-        <Route path="/admin" element={<Admin />} />
+        <Route path="/admin" element={<OnlyLogin />} />
         <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
