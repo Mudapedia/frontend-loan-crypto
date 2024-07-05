@@ -18,7 +18,7 @@ const ContactUs = () => {
             <div className="flex flex-col gap-8 mt-8">
               <h1 className="font-bold text-lg text-center">Get In Touch With Us</h1>
               <div className="flex justify-between">
-                <div className="bg-slate-200 rounded-lg px-5 py-8 grid place-items-center cursor-pointer hover:bg-slate-300" onClick={() => {window.location.href="tel:84908804766"}}>
+                <div className="bg-slate-200 rounded-lg px-5 py-8 grid place-items-center cursor-pointer hover:bg-slate-300" onClick={() => {window.location.href="tel:+84908804766"}}>
                   <div>
                     <div className="flex">
                       <img width="24" height="24" src="https://img.icons8.com/ios-filled/50/incoming-call.png" alt="whatsapp--v1" className="mr-2"/>
@@ -27,7 +27,7 @@ const ContactUs = () => {
                     <p className="ml-7">+84908804766</p>
                   </div>
                 </div>
-                <div className="bg-slate-200 rounded-lg px-5 py-8 grid place-items-center cursor-pointer hover:bg-slate-300" onClick={() => {window.location.href="tel:6282247739704"}}>
+                <div className="bg-slate-200 rounded-lg px-5 py-8 grid place-items-center cursor-pointer hover:bg-slate-300" onClick={() => {window.location.href="tel:+6281235282931"}}>
                   <div>
                     <div className="flex">
                       <img width="24" height="24" src="https://img.icons8.com/ios-filled/50/incoming-call.png" alt="whatsapp--v1" className="mr-2"/>
