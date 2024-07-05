@@ -6,7 +6,7 @@ const ContactUs = () => {
       <Helmet>
         <title>Contact Us</title>
       </Helmet>
-      <section className="flex justify-center h-[100vh] w-[100vw] bg-black">
+      <section className="flex justify-center h-[100svh] bg-black bg-[url('https://i.pinimg.com/originals/35/58/0d/35580d64b9b883fd0e0678595fc2aefd.gif')] bg-cover bg-no-repeat px-5 py-4">
         <section className="relative bg-white border border-black py-14 px-8 w-[640px] rounded-lg flex flex-col gap-5 mx-auto max-h-screen overflow-x-auto no-scrollbar">
           <div className=" grid gap-3 text-sm">
             <h1 className="text-center mb-5 font-bold text-lg">About Crypto Global Swift</h1>
@@ -17,30 +17,30 @@ const ContactUs = () => {
             </p>
             <div className="flex flex-col gap-8 mt-8">
               <h1 className="font-bold text-lg text-center">Get In Touch With Us</h1>
-              <div className="flex justify-between">
+              <div className="flex flex-col gap-8 md:flex-row md:justify-between">
                 <div className="bg-slate-200 rounded-lg px-5 py-8 grid place-items-center cursor-pointer hover:bg-slate-300" onClick={() => {window.location.href="tel:+84908804766"}}>
                   <div>
                     <div className="flex">
-                      <img width="24" height="24" src="https://img.icons8.com/ios-filled/50/incoming-call.png" alt="whatsapp--v1" className="mr-2"/>
+                      <img width="20" height="20" src="https://img.icons8.com/ios-filled/50/incoming-call.png" alt="whatsapp--v1" className="mr-2"/>
                       <h2>William (Crypto Host Admin)</h2>
                     </div>
-                    <p className="ml-7">+84908804766</p>
+                    <p className="ml-7">+84 90 880 47 66</p>
                   </div>
                 </div>
-                <div className="bg-slate-200 rounded-lg px-5 py-8 grid place-items-center cursor-pointer hover:bg-slate-300" onClick={() => {window.location.href="tel:+6281235282931"}}>
+                <div className="bg-slate-200 rounded-lg px-5 py-8 grid place-items-center cursor-pointer hover:bg-slate-300" onClick={() => {window.location.href="tel:+18327583337"}}>
                   <div>
                     <div className="flex">
-                      <img width="24" height="24" src="https://img.icons8.com/ios-filled/50/incoming-call.png" alt="whatsapp--v1" className="mr-2"/>
+                      <img width="20" height="20" src="https://img.icons8.com/ios-filled/50/incoming-call.png" alt="whatsapp--v1" className="mr-2"/>
                       <h2>David (Global Server Admin)</h2>
                     </div>
-                    <p className="ml-7">+62 815-5690-3754</p>
+                    <p className="ml-7">+1 (832) 758-3337</p>
                   </div>
                 </div>
               </div>
               <div className="bg-slate-200 rounded-lg px-5 py-8 grid place-items-center cursor-pointer hover:bg-slate-300" onClick={() => {window.location.href="mailto:mail@mail.com"}}>
                 <div>
                   <div className="flex">
-                    <img width="24" height="24" src="https://img.icons8.com/ios-filled/50/filled-message.png" alt="filled-message" className="mr-2"/>
+                    <img width="20" height="20" src="https://img.icons8.com/ios-filled/50/filled-message.png" alt="filled-message" className="mr-2"/>
                     <h2>Our Email</h2>
                   </div>
                   <p className="ml-7">mail@mail.com</p>
@@ -49,8 +49,8 @@ const ContactUs = () => {
               <div className="bg-slate-200 rounded-lg px-5 py-8 grid place-items-center cursor-pointer hover:bg-slate-300" onClick={() => {window.location.href="https://globalserver.my.id/"}}>
                 <div>
                   <div className="flex">
-                    <img width="24" height="24" src="https://img.icons8.com/ios-filled/50/globe--v1.png" alt="globe--v1" className="mr-2"/>
-                    <h2>See Our Services</h2>
+                    <img width="20" height="20" src="https://img.icons8.com/ios-filled/50/globe--v1.png" alt="globe--v1" className="mr-2"/>
+                    <h2>Check Our Services On</h2>
                   </div>
                   <p className="ml-7">https://globalserver.my.id/</p>
                 </div>
