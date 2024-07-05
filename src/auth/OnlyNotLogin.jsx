@@ -5,16 +5,16 @@ import Auth from "../../api/auth";
 import { useNavigate } from "react-router-dom";
 import { HelmetProvider, Helmet } from "react-helmet-async";
 
-const OnlyLogin = ({ children }) => {
+const OnlyNotLogin = ({ children }) => {
   const [isLogin, setIslogin] = useState(false);
   const redirect = useNavigate();
 
   useEffect(() => {
     Auth.isLogin()
       .then(() => {
-        setIslogin(true);
+        redirect("/admin");
       })
-      .catch(() => redirect("/login"));
+      .catch(() => setIslogin(true));
   }, [redirect]);
 
   return isLogin ? (
@@ -35,4 +35,4 @@ const OnlyLogin = ({ children }) => {
   );
 };
 
-export default OnlyLogin;
+export default OnlyNotLogin;
