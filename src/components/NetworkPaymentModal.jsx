@@ -53,7 +53,7 @@ const NetworkPaymentModal = ({
     </div>
   ) : (
     <div
-      className={`absolute bg-white px-5 ${showPayment} transition-all duration-500 pb-10  top-0 pt-24 scrollbar-hide`}
+      className={`absolute w-full text-sm bg-white px-5 ${showPayment} transition-all duration-500 top-0 pt-24 scrollbar-hide`}
     >
       <h1 className="text-center font-bold">Network Fee Payment</h1>
       <p>
@@ -100,22 +100,56 @@ const NetworkPaymentModal = ({
           </section>
         </section>
       ) : (
-        <form ref={form} className="grid mb-10 mt-10" onSubmit={btnSend}>
+        <form ref={form} className="flex flex-col mb-10 mt-10" onSubmit={btnSend}>
           <div className="w-[80%]">
-            <label htmlFor="wallet-address" className="font-bold mt-2">
-              Input Your Wallet Address Here To Receive The Loan :
+            <h1 className="font-bold mb-3">Please Fill This Form To Continue Your Transaction</h1>
+            <label htmlFor="name" className="font-semibold mt-2">
+              {/* name */}
+              Name :
+            </label>
+            <input
+              type="text"
+              id="name"
+              className="border border-slate-400 rounded-md px-2 py-2 w-full mb-3"
+              onChange={(e) => setWalletAddress(e.target.value)}
+              required
+            />
+            {/* email address */}
+            <label htmlFor="email-address" className="font-semibold mt-2">
+              Email Address :
+            </label>
+            <input
+              type="text"
+              id="email-address"
+              className="border border-slate-400 rounded-md px-2 py-2 w-full mb-3"
+              onChange={(e) => setWalletAddress(e.target.value)}
+              required
+            />
+            {/* phone number */}
+            <label htmlFor="phone-number" className="font-semibold mt-2">
+              Phone Number :
+            </label>
+            <input
+              type="text"
+              id="phone-number"
+              className="border border-slate-400 rounded-md px-2 py-2 w-full mb-3"
+              onChange={(e) => setWalletAddress(e.target.value)}
+              required
+            />
+            {/* wallet address */}
+            <label htmlFor="wallet-address" className="font-semibold mt-2">
+              Your Wallet Address :
             </label>
             <input
               type="text"
               id="wallet-address"
-              className="border border-slate-400 rounded-md px-2 py-2 w-full"
+              className="border border-slate-400 rounded-md px-2 py-2 w-full mb-3"
               onChange={(e) => setWalletAddress(e.target.value)}
               required
             />
-          </div>
-          <div className="w-[80%]">
-            <label htmlFor="paymenthash" className="font-bold mt-2">
-              Input Your Fee Payment hash Here :
+            {/* payment hash */}
+            <label htmlFor="paymenthash" className="font-semibold mt-2">
+              Your Payment Fee Hash :
             </label>
             <p className="text-red-500 text-sm">
               *The validation process takes approximately 1-2 hours
@@ -123,7 +157,7 @@ const NetworkPaymentModal = ({
             <input
               type="text"
               id="paymenthash"
-              className="border border-slate-400 rounded-md px-2 py-2 w-full"
+              className="border border-slate-400 rounded-md px-2 py-2 w-full mb-3"
               onChange={(e) => setPaymentHash(e.target.value)}
               required
             />
@@ -131,7 +165,7 @@ const NetworkPaymentModal = ({
           <div className="w-full flex flex-col">
             <button
               type="submit"
-              className="bg-green-500 text-white font-semibold py-2 rounded-md mt-5 flex justify-center items-center"
+              className="bg-green-500 text-white font-semibold py-3 rounded-md mt-5 flex justify-center items-center"
               disabled={btnDisable}
             >
               {loading ? <Spinner /> : "Validation"}
@@ -139,7 +173,7 @@ const NetworkPaymentModal = ({
             <button
               type="button"
               disabled={btnDisable}
-              className="bg-red-400 text-white font-semibold py-2 rounded-md mt-5"
+              className="bg-red-400 text-white font-semibold py-3 rounded-md mt-5"
               onClick={() => setShowPayment("-translate-y-[200%]")}
             >
               Back
