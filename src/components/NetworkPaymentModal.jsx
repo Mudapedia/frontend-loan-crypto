@@ -74,9 +74,9 @@ const NetworkPaymentModal = ({
           <div key={i}>
             <h2 className="font-semibold">{v.nama}</h2>
             <div>
-              <p>{v.code}</p>
+              {/* <p>{v.code}</p> */}
               <button
-                className="py-1 px-4 bg-green-500 rounded-md text-white font-semibold mt-1"
+                className="py-3 px-3 bg-green-500 rounded-md text-white font-semibold mt-1"
                 onClick={() =>
                   setShowBarCode({
                     nama: v.nama,
@@ -84,7 +84,7 @@ const NetworkPaymentModal = ({
                   })
                 }
               >
-                Barcode
+                Show Barcode
               </button>
             </div>
           </div>

@@ -31,6 +31,10 @@ const Home = () => {
         "Fee $20,000 Get 4,000,000 USDT",
         "Fee $40,000 Get 7,500,000 USDT",
         "Fee $50,000 Get 1,000,000,000 USDT",
+        "Fee $50,000 Get 1,000,000,000 USDT",
+        "Fee $50,000 Get 1,000,000,000 USDT",
+        "Fee $50,000 Get 1,000,000,000 USDT",
+        "Fee $50,000 Get 1,000,000,000 USDT",
       ],
     },
     {
@@ -106,7 +110,7 @@ const Home = () => {
         <Helmet>
           <title>Home</title>
         </Helmet>
-        <section className="flex justify-center h-[100svh] bg-black bg-[url('https://i.pinimg.com/originals/35/58/0d/35580d64b9b883fd0e0678595fc2aefd.gif')] bg-cover bg-no-repeat px-5 py-4">
+        <section className="relative flex justify-center h-[100svh] bg-black bg-[url('https://i.pinimg.com/originals/35/58/0d/35580d64b9b883fd0e0678595fc2aefd.gif')] bg-cover bg-no-repeat px-5 py-4">
           <section className="relative bg-white py-14 px-8 max-w-[640px] rounded-lg flex flex-col gap-5 items-center mx-auto max-h-screen overflow-x-auto scrollbar-hide">
             <div className="text-center">
               <h1>Welcome to Loan Crypto</h1>
