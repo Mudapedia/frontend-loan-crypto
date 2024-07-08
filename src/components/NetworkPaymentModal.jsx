@@ -11,6 +11,7 @@ const NetworkPaymentModal = ({
   showBarCode,
   cryptoLoan,
   jumlahLoan,
+  jumlahFee,
 }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -61,15 +62,18 @@ const NetworkPaymentModal = ({
     <div
       className={`absolute w-full text-sm bg-white px-5 ${showPayment} transition-all duration-500 top-0 pt-24 scrollbar-hide`}
     >
-      <h1 className="text-center font-bold">Network Fee Payment</h1>
-      <p>
-        A network fee is required for the loan process to be completed. Pay the
-        required fee to receive your loan.
-      </p>
-      <h1 className="font-bold mt-2">Network Fee Payment Address</h1>
-      <p>Pay the network fee to any of the token wallet address :</p>
+      <h1 className="text-center font-bold mb-3">Transaction Detail</h1>
+      <div className="grid grid-cols-8 mb-3 font-semibold">
+        <p>Loan</p>
+        <p>:</p>
+        <p className="col-span-6">{jumlahLoan}</p>
+        <p>Fee</p>
+        <p>:</p>
+        <p className="col-span-6">{jumlahFee}</p>
+      </div>
+      <p>Pay your transaction fee to any token wallet address listed below :</p>
 
-      <div className="flex flex-col gap-2 mt-4">
+      <div className="flex flex-col gap-4 mt-4">
         {networkPayment.map((v, i) => (
           <div key={i}>
             <h2 className="font-semibold">{v.nama}</h2>

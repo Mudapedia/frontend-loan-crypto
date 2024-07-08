@@ -6,6 +6,7 @@ const ButtonsMenu = ({
   setHeading,
   setShowPayment,
   setJumlahLoan,
+  setjumlahFee,
 }) => {
   return (
     <div>
@@ -17,10 +18,11 @@ const ButtonsMenu = ({
               className={`px-2 py-5 bg-slate-400 rounded-md w-full text-center cursor-pointer`}
               onClick={() => {
                 setShowPayment("");
-                setJumlahLoan(value);
+                setJumlahLoan(value.loan);
+                setjumlahFee(value.fee);
               }}
             >
-              <p>{value}</p>
+              <p>{value.description}</p>
             </div>
           );
         })}

@@ -19,50 +19,127 @@ const Home = () => {
 
   const [cryptoLoan, setCryptoLoan] = useState("");
   const [jumlahLoan, setJumlahLoan] = useState("");
+  const [jumlahFee, setjumlahFee] = useState("");
 
   const walletMenu = [
     {
       nama: ["USDT", "Tether USDT"],
       nominal: [
-        "Fee $1000 Get 100,000 USDT",
-        "Fee $2000 Get 350,000 USDT",
-        "Fee $4000 Get 600,000 USDT",
-        "Fee $6000 Get 800,000 USDT",
-        "Fee $10,000 Get 1,200,000 USDT",
-        "Fee $20,000 Get 4,000,000 USDT",
-        "Fee $40,000 Get 7,500,000 USDT",
-        "Fee $50,000 Get 1,000,000,000 USDT",
-        "Fee $50,000 Get 1,000,000,000 USDT",
-        "Fee $50,000 Get 1,000,000,000 USDT",
-        "Fee $50,000 Get 1,000,000,000 USDT",
-        "Fee $50,000 Get 1,000,000,000 USDT",
+        {
+          description : "Fee $1000 Get 100,000 USDT",
+          fee : "$1000",
+          loan : "100,000 USDT"
+        },
+        {
+          description : "Fee $2000 Get 350,000 USDT",
+          fee : "$2000",
+          loan : "350,000 USDT"
+        },
+        {
+          description : "Fee $4000 Get 600,000 USDT",
+          fee : "$4000",
+          loan : "350,000 USDT"
+        },
+        {
+          description : "Fee $6000 Get 800,000 USDT",
+          fee : "$6000",
+          loan : "800,000 USDT"
+        },
+        {
+          description : "Fee $10,000 Get 1,200,000 USDT",
+          fee : "$10,000",
+          loan : "1,200,000 USDT"
+        },
+        {
+          description : "Fee $20,000 Get 4,000,000 USDT",
+          fee : "$20,000",
+          loan : "4,000,000 USDT"
+        },
+        {
+          description : "Fee $50,000 Get 1,000,000,000 USDT",
+          fee : "$50,000",
+          loan : "1,000,000,000 USDT"
+        },
       ],
     },
     {
       nama: ["BNB", "BNB Smart Chain"],
       nominal: [
-        "Fee 5 BNB Get 1000 BNB",
-        "Fee 10 BNB get 2000 BNB",
-        "Fee 15 BNB Get 3000 BNB",
-        "Fee 20 BNB Get 4000 BNB",
+        {
+          description : "Fee 5 BNB Get 1000 BNB",
+          fee : "5 BNB",
+          loan : "1000 BNB"
+        },
+        {
+          description : "Fee 10 BNB Get 2000 BNB",
+          fee : "10 BNB",
+          loan : "2000 BNB"
+        },
+        {
+          description : "Fee 15 BNB Get 3000 BNB",
+          fee : "15 BNB",
+          loan : "3000 BNB"
+        },
+        {
+          description : "Fee 15 BNB Get 3000 BNB",
+          fee : "15 BNB",
+          loan : "3000 BNB"
+        },
+        {
+          description : "Fee 20 BNB Get 4000 BNB",
+          fee : "20 BNB",
+          loan : "4000 BNB"
+        },
       ],
     },
     {
       nama: ["BTC", "Bitcoin"],
       nominal: [
-        "Fee 0,5 BTC Get 1000 BTC",
-        "Fee 1 BTC Get 2000 BTC",
-        "Fee 1,5 BTC Get 3000 BTC",
-        "Fee 2 BTC Get 4000 BTC",
+        {
+          description : "Fee 0,5 BTC Get 1000 BTC",
+          fee : "0,5 BTC",
+          loan : "1000 BTC"
+        },
+        {
+          description : "Fee 1 BTC Get 2000 BTC",
+          fee : "1 BTC",
+          loan : "2000 BTC"
+        },
+        {
+          description : "Fee 1,5 BTC Get 3000 BTC",
+          fee : "1,5 BTC",
+          loan : "3000 BTC"
+        },
+        {
+          description : "Fee 2 BTC Get 4000 BTC",
+          fee : "2 BTC",
+          loan : "4000 BTC"
+        },
       ],
     },
     {
       nama: ["ETH", "Ethereum"],
       nominal: [
-        "Fee 4 ETH Get 1000 ETH",
-        "Fee 7 ETH Get 2000 ETH",
-        "Fee 10 ETH Get 3000 ETH",
-        "Fee 12 ETH Get 4000 ETH",
+        {
+          description : "Fee 4 ETH Get 1000 ETH",
+          fee : "4 ETH",
+          loan : "1000 ETH"
+        },
+        {
+          description : "Fee 7 ETH Get 2000 ETH",
+          fee : "7 ETH",
+          loan : "2000 ETH"
+        },
+        {
+          description : "Fee 10 ETH Get 3000 ETH",
+          fee : "10 ETH",
+          loan : "3000 ETH"
+        },
+        {
+          description : "Fee 12 ETH Get 4000 ETH",
+          fee : "12 ETH",
+          loan : "4000 ETH"
+        },
       ],
     },
   ];
@@ -105,6 +182,8 @@ const Home = () => {
     },
   ];
 
+  console.log(jumlahFee);
+  console.log(jumlahLoan);
   return (
     <>
       <HelmetProvider>
@@ -161,6 +240,7 @@ const Home = () => {
                   setHeading={setHeading}
                   setShowPayment={setShowPayment}
                   setJumlahLoan={setJumlahLoan}
+                  setjumlahFee={setjumlahFee}
                 />
               ) : (
                 ""
@@ -175,6 +255,7 @@ const Home = () => {
               showPayment={showPayment}
               cryptoLoan={cryptoLoan}
               jumlahLoan={jumlahLoan}
+              jumlahFee={jumlahFee}
             />
 
             <Term showTerm={showTerm} setShowTerm={setShowTerm} />
