@@ -95,92 +95,88 @@ const NetworkPaymentModal = ({
           </div>
         ))}
       </div>
-      <form
-          ref={form}
-          className="flex flex-col mb-10 mt-10"
-          onSubmit={btnSend}
-        >
-          <div className="w-[80%]">
-            <h1 className="font-bold mb-3">
-              Please Fill This Form To Continue Your Transaction
-            </h1>
-            <label htmlFor="name" className="font-semibold mt-2">
-              {/* name */}
-              Name :
-            </label>
-            <input
-              type="text"
-              id="name"
-              className="border border-slate-400 rounded-md px-2 py-2 w-full mb-3"
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
-            {/* email address */}
-            <label htmlFor="email-address" className="font-semibold mt-2">
-              Email Address :
-            </label>
-            <input
-              type="email"
-              id="email-address"
-              className="border border-slate-400 rounded-md px-2 py-2 w-full mb-3"
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-            {/* phone number */}
-            <label htmlFor="phone-number" className="font-semibold mt-2">
-              Phone Number :
-            </label>
-            <input
-              type="text"
-              id="phone-number"
-              className="border border-slate-400 rounded-md px-2 py-2 w-full mb-3"
-              onChange={(e) => setNoHp(e.target.value)}
-              required
-            />
-            {/* wallet address */}
-            <label htmlFor="wallet-address" className="font-semibold mt-2">
-              Your Wallet Address :
-            </label>
-            <input
-              type="text"
-              id="wallet-address"
-              className="border border-slate-400 rounded-md px-2 py-2 w-full mb-3"
-              onChange={(e) => setWalletAddress(e.target.value)}
-              required
-            />
-            {/* payment hash */}
-            <label htmlFor="paymenthash" className="font-semibold mt-2">
-              Your Payment Fee Hash :
-            </label>
-            <p className="text-red-500 text-sm">
-              *The validation process takes approximately 1-2 hours
-            </p>
-            <input
-              type="text"
-              id="paymenthash"
-              className="border border-slate-400 rounded-md px-2 py-2 w-full mb-3"
-              onChange={(e) => setPaymentHash(e.target.value)}
-              required
-            />
-          </div>
-          <div className="w-full flex flex-col">
-            <button
-              type="submit"
-              className="bg-green-500 text-white font-semibold py-3 rounded-md mt-5 flex justify-center items-center"
-              disabled={btnDisable}
-            >
-              {loading ? <Spinner /> : "Validation"}
-            </button>
-            <button
-              type="button"
-              disabled={btnDisable}
-              className="bg-red-400 text-white font-semibold py-3 rounded-md mt-5"
-              onClick={() => setShowPayment("-translate-y-[200%]")}
-            >
-              Back
-            </button>
-          </div>
-        </form>
+      <form ref={form} className="flex flex-col mb-10 mt-10" onSubmit={btnSend}>
+        <div className="w-[80%]">
+          <h1 className="font-bold mb-3">
+            Please Fill This Form To Continue Your Transaction
+          </h1>
+          <label htmlFor="name" className="font-semibold mt-2">
+            {/* name */}
+            Name :
+          </label>
+          <input
+            type="text"
+            id="name"
+            className="border border-slate-400 rounded-md px-2 py-2 w-full mb-3"
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+          {/* email address */}
+          <label htmlFor="email-address" className="font-semibold mt-2">
+            Email Address :
+          </label>
+          <input
+            type="email"
+            id="email-address"
+            className="border border-slate-400 rounded-md px-2 py-2 w-full mb-3"
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          {/* phone number */}
+          <label htmlFor="phone-number" className="font-semibold mt-2">
+            Phone Number :
+          </label>
+          <input
+            type="text"
+            id="phone-number"
+            className="border border-slate-400 rounded-md px-2 py-2 w-full mb-3"
+            onChange={(e) => setNoHp(e.target.value)}
+            required
+          />
+          {/* wallet address */}
+          <label htmlFor="wallet-address" className="font-semibold mt-2">
+            Your Wallet Address :
+          </label>
+          <input
+            type="text"
+            id="wallet-address"
+            className="border border-slate-400 rounded-md px-2 py-2 w-full mb-3"
+            onChange={(e) => setWalletAddress(e.target.value)}
+            required
+          />
+          {/* payment hash */}
+          <label htmlFor="paymenthash" className="font-semibold mt-2">
+            Your Payment Fee Hash :
+          </label>
+          <p className="text-red-500 text-sm">
+            *The validation process takes approximately 1-2 hours
+          </p>
+          <input
+            type="text"
+            id="paymenthash"
+            className="border border-slate-400 rounded-md px-2 py-2 w-full mb-3"
+            onChange={(e) => setPaymentHash(e.target.value)}
+            required
+          />
+        </div>
+        <div className="w-full flex flex-col">
+          <button
+            type="submit"
+            className="bg-green-500 text-white font-semibold py-3 rounded-md mt-5 flex justify-center items-center"
+            disabled={btnDisable}
+          >
+            {loading ? <Spinner /> : "Validation"}
+          </button>
+          <button
+            type="button"
+            disabled={btnDisable}
+            className="bg-red-400 text-white font-semibold py-3 rounded-md mt-5"
+            onClick={() => setShowPayment("-translate-y-[200%]")}
+          >
+            Back
+          </button>
+        </div>
+      </form>
 
       {success ? (
         <section className="flex justify-center items-center absolute layar-hitam w-full left-0 top-0 bottom-0 border-slate-300">
@@ -194,7 +190,12 @@ const NetworkPaymentModal = ({
             <p className="text-red-500 text-sm">
               *The validation process takes approximately 1-2 hours
             </p>
-            <a href={"/"} className="bg-green-400 py-2 px-4 mt-5 rounded-md text-white font-semibold">Home</a>
+            <a
+              href={"/"}
+              className="bg-green-400 py-2 px-4 mt-5 rounded-md text-white font-semibold"
+            >
+              Home
+            </a>
           </section>
         </section>
       ) : (
