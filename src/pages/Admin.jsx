@@ -4,19 +4,25 @@ import AdminAPi from "../../api/admin";
 import AdminDetilTransaksi from "../components/AdminDetilTransaksi";
 
 const Admin = () => {
-  const [transactionFinish, setTransactionFinish] = useState([]);
-  const [transactionNotFinish, setTransactionNotFinish] = useState([]);
+  // const [transactionFinish, setTransactionFinish] = useState([]);
+  const [data, setData] = useState([]);
   const [showDetail, setShowDetail] = useState(false);
-  const [data, setData] = useState({});
+  const [detailData, setDetailData] = useState({});
+  const [showFilter, setShowFilter] = useState(false);
+  const [dataFilter, setDataFilter] = useState("pending");
 
   useEffect(() => {
-    AdminAPi.getTransactionFinish().then(({ data }) => {
-      setTransactionFinish(data.data);
-    });
-    AdminAPi.getTransactionNotFinish().then(({ data }) => {
-      setTransactionNotFinish(data.data);
-    });
-  }, []);
+    if(dataFilter == "pending"){
+      AdminAPi.getTransactionNotFinish().then(({ data }) => {
+        setData(data.data);
+      });
+    }else{
+      AdminAPi.getTransactionFinish().then(({ data }) => {
+        setData(data.data);
+      });
+    }
+    
+  }, [dataFilter]);
 
   return (
     <HelmetProvider>
@@ -27,7 +33,17 @@ const Admin = () => {
         <section className="relative bg-white border border-black py-14 px-8 w-[640px] rounded-lg flex flex-col gap-5 mx-auto max-h-screen">
           <div>
             <h1 className="font-semibold text-center">Admin Page</h1>
-            {transactionNotFinish.map((v, i) => {
+            <div className="flex justify-end text-sm">
+              <div className="relative flex gap-2 border border-slate-300 py-1 px-2 rounded-md cursor-pointer" onClick={() => setShowFilter(!showFilter)}>
+                <p>Filter :</p>
+                <p>{dataFilter=="pending"?"Pending Transaction" : "Finished Transaction"}</p>
+                <div className={`${showFilter?"absolute":"hidden"} bg-white absolute border border-slate-300 py-1 px-2 rounded-md right-0 left-0 -bottom-14`}>
+                  <p className="cursor-pointer" onClick={() => setDataFilter("finished")}>Finished Transaction</p>
+                  <p className="cursor-pointer" onClick={() => setDataFilter("pending")}>pending Transaction</p>
+                </div>
+              </div>
+            </div>
+            {data.map((v, i) => {
               const transactionDate = new Date(v.created_at).toLocaleDateString(
                 "en-ID",
                 { day: "numeric", month: "long", year: "numeric" }
@@ -48,7 +64,7 @@ const Admin = () => {
                     setShowDetail(!showDetail);
                     v.created_at = transactionDate;
                     v.jam = transactionHour;
-                    setData(v);
+                    setDetailData(v);
                   }}
                 >
                   <p className="col-span-2">Transaction Code</p>
@@ -71,9 +87,9 @@ const Admin = () => {
           {/* pop up detail transaksi */}
           {showDetail ? (
             <AdminDetilTransaksi
-              data={data}
+              data={detailData}
               setShowDetail={setShowDetail}
-              setTransactionNotFinish={setTransactionNotFinish}
+              setTransactionNotFinish={data}
             />
           ) : (
             ""
