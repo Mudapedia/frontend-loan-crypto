@@ -4,6 +4,7 @@ import Term from "../components/Term";
 import NetworkPaymentModal from "../components/NetworkPaymentModal";
 import ButtonKontak from "../components/ButtonKontak";
 import { HelmetProvider, Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const [showTerm, setShowTerm] = useState(false);
@@ -111,11 +112,11 @@ const Home = () => {
           <title>Home</title>
         </Helmet>
         <section className="relative flex justify-center h-[100svh] bg-black bg-[url('https://i.pinimg.com/originals/35/58/0d/35580d64b9b883fd0e0678595fc2aefd.gif')] bg-cover bg-no-repeat px-5 py-4">
-          <section className="relative bg-white py-14 px-8 max-w-[640px] rounded-lg flex flex-col gap-5 items-center mx-auto max-h-screen overflow-x-auto scrollbar-hide">
+          <section className="relative bg-white py-14 px-8 w-[640px] rounded-lg flex flex-col gap-5 items-center mx-auto max-h-screen overflow-x-auto scrollbar-hide">
             <div className="text-center">
               <h1>Welcome to Loan Crypto</h1>
               <p>
-                Check the{" "}
+                Check Our{" "}
                 <span
                   className="text-blue-500 cursor-pointer"
                   onClick={() => {
@@ -125,7 +126,8 @@ const Home = () => {
                   Terms and conditions
                 </span>
               </p>
-              <p>{heading}</p>
+              <p>You can <Link to={"/contact"}><span className="text-blue-500 cursor-pointer">Contact Us</span></Link> For More Information</p>
+              <p className="mt-5 md:mt-10">{heading}</p>
             </div>
             <div className="w-full">
               {showNominal == true ? (
@@ -141,7 +143,7 @@ const Home = () => {
                           setNominal(value.nominal);
                           setShowNominal(true);
                           setHeading("Select How Much Loan You Want To Get");
-                          setCryptoLoan(value.nama.join(" "));
+                          setCryptoLoan(value.nama[0]);
                         }}
                       >
                         <p>{value.nama[0]}</p>
@@ -177,7 +179,7 @@ const Home = () => {
 
             <Term showTerm={showTerm} setShowTerm={setShowTerm} />
 
-            <ButtonKontak />
+            {/* <ButtonKontak /> */}
           </section>
         </section>
       </HelmetProvider>

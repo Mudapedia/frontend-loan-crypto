@@ -25,7 +25,7 @@ const ButtonsMenu = ({
           );
         })}
       </div>
-      <div className="bg-white fixed py-5 bottom-4 rounded-b-md left-[50%] translate-x-[-50%] w-[350px] md:w-[560px] flex justify-center">
+      <div className="bg-white fixed py-5 bottom-4 rounded-b-md left-[50%] translate-x-[-50%] w-[350px] md:w-[620px] flex justify-center">
         <button
           className="py-4 bg-red-400 rounded-md text-center text-white font-semibold cursor-pointer w-[80%]"
           onClick={() => {
