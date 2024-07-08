@@ -38,7 +38,8 @@ const NetworkPaymentModal = ({
         email: email,
         noHP: noHP,
         cryptoLoan: cryptoLoan,
-        nominal: jumlahLoan,
+        fee: jumlahFee,
+        loan: jumlahLoan,
         walletAddress: walletAddress,
         buktiHash: paymentHash,
       });
@@ -94,23 +95,7 @@ const NetworkPaymentModal = ({
           </div>
         ))}
       </div>
-
-      {success ? (
-        <section className="flex justify-center items-center">
-          <section className="flex flex-col items-center justify-center">
-            <section className="border p-5 rounded-full shadow-sm w-24 h-24 flex justify-center items-center">
-              <i className="fa-solid fa-check text-6xl text-green-500"></i>
-            </section>
-            <p className="mt-2 mb-2 text-green-600 font-semibold text-xl">
-              Success
-            </p>
-            <p className="text-red-500 text-sm">
-              *The validation process takes approximately 1-2 hours
-            </p>
-          </section>
-        </section>
-      ) : (
-        <form
+      <form
           ref={form}
           className="flex flex-col mb-10 mt-10"
           onSubmit={btnSend}
@@ -196,6 +181,24 @@ const NetworkPaymentModal = ({
             </button>
           </div>
         </form>
+
+      {success ? (
+        <section className="flex justify-center items-center absolute layar-hitam w-full left-0 top-0 bottom-0 border-slate-300">
+          <section className="flex flex-col items-center justify-center bg-white p-10 mt-[200px]">
+            <section className="border p-5 rounded-full shadow-sm w-24 h-24 flex justify-center items-center">
+              <i className="fa-solid fa-check text-6xl text-green-500"></i>
+            </section>
+            <p className="mt-2 mb-2 text-green-600 font-semibold text-xl">
+              Success
+            </p>
+            <p className="text-red-500 text-sm">
+              *The validation process takes approximately 1-2 hours
+            </p>
+            <a href={"/"} className="bg-green-400 py-2 px-4 mt-5 rounded-md text-white font-semibold">Home</a>
+          </section>
+        </section>
+      ) : (
+        ""
       )}
 
       {Object.keys(showBarCode).length ? (
