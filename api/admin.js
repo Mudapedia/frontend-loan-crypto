@@ -7,6 +7,9 @@ class AdminAPi {
   static getTransactionNotFinish() {
     return axiosIns.get("/admin/transaction-not-finish");
   }
+  static finishTransaction(id) {
+    return axiosIns.put(`/admin/finished-transaction/${id}`);
+  }
 }
 
 export default AdminAPi;
