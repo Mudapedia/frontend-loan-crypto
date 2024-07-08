@@ -5,6 +5,7 @@ import AdminAPi from "../../api/admin";
 const Admin = () => {
   const [transactionFinish, setTransactionFinish] = useState([]);
   const [transactionNotFinish, setTransactionNotFinish] = useState([]);
+  const [showDetail, setShowDetail] = useState(false);
 
   useEffect(() => {
     AdminAPi.getTransactionFinish().then(({ data }) => {
@@ -28,24 +29,73 @@ const Admin = () => {
 
             {transactionNotFinish.map((v,i) => {
               
-              const transactionDate = ""
+              const transactionDate = new Date(v.created_at).toLocaleDateString('en-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+              const jam = new Date(v.created_at).getHours();
+              const menit = new Date(v.created_at).getMinutes();
+              const detik = new Date(v.created_at).getSeconds();
+              const transactionHour = `${jam.toString().padStart(2, '0')}:${menit.toString().padStart(2, '0')}:${detik.toString().padStart(2, '0')}`;
               return(
-                <div className="bg-slate-400 my-5 p-4 rounded-md grid grid-cols-8">
+                <div className="bg-slate-400 my-5 p-4 rounded-md grid grid-cols-8 cursor-pointer" onClick={()=> setShowDetail(!showDetail)}>
                   <p className="col-span-2">Transaction Code</p>
                   <p className="text-center">:</p>
                   <p className="col-span-5">{v.codeTransaksi}</p>
-                  <p>Name</p>
+                  <p className="col-span-2">Name</p>
                   <p className="text-center">:</p>
                   <p className="col-span-5">{v.name}</p>
-                  <p>Transaction Date</p>
+                  <p className="col-span-2">Transaction Date</p>
                   <p className="text-center">:</p>
-                  <p className="col-span-5">{v.name}</p>
-                  <p>Transaction Time</p>
+                  <p className="col-span-5">{transactionDate}</p>
+                  <p className="col-span-2">Transaction Time</p>
                   <p className="text-center">:</p>
+                  <p className="col-span-5">{transactionHour}</p>
                 </div>
               )
             }
             )}
+          </div>
+
+          {/* pop up detail transaksi */}
+          <div className={`bg-white top-0 left-0 right-0 bottom-0 p-10 ${showDetail? "absolute" : "hidden"}`}>
+            <h1 className="font-bold text-lg text-center mb-5">Transaction Detail</h1>
+            <div className="grid grid-cols-8 gap-3">
+              <p className="col-span-2">Transaction Code</p>
+              <p className="text-center">:</p>
+              <p className="col-span-5">123123123</p>
+              <p className="col-span-2">Name</p>
+              <p className="text-center">:</p>
+              <p className="col-span-5">test nama</p>
+              <p className="col-span-2">Email</p>
+              <p className="text-center">:</p>
+              <p className="col-span-5">Email@mail.com</p>
+              <p className="col-span-2">Phone Number</p>
+              <p className="text-center">:</p>
+              <p className="col-span-5">08127127127172</p>
+              <p className="col-span-2">Loan Request</p>
+              <p className="text-center">:</p>
+              <p className="col-span-5">1000 BTC</p>
+              <p className="col-span-2">Loan Fee</p>
+              <p className="text-center">:</p>
+              <p className="col-span-5">$10.000</p>
+              <p className="col-span-2">Transaction Date</p>
+              <p className="text-center">:</p>
+              <p className="col-span-5">tanggal transaksi</p>
+              <p className="col-span-2">Transaction Time</p>
+              <p className="text-center">:</p>
+              <p className="col-span-5">jam : menit : detik</p>
+              <p className="col-span-2">Customer Wallet Address</p>
+              <p className="text-center">:</p>
+              <p className="col-span-5">"lkjdsfjaofjwefuslkacnauiwehfosijf"</p>
+              <p className="col-span-2">Fee Payment Hash</p>
+              <p className="text-center">:</p>
+              <p className="col-span-5">"lkjdsfjaofjwefuslkacnauiwehfosijf"</p>
+            </div>
+            <div className="flex justify-between mt-10">
+              <button className="bg-red-500 py-2 px-4 rounded-md text-white">Reject</button>
+              <button className="bg-green-500 py-2 px-4 rounded-md text-white">Accept</button>
+            </div>
+            <div className=" flex justify-center mt-10">
+              <button className="bg-blue-500 py-3 w-full rounded-md text-white" onClick={()=>setShowDetail(!showDetail)}>Kembali</button>
+            </div>
           </div>
         </section>
       </section>
