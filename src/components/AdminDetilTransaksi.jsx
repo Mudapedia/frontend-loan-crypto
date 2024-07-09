@@ -11,6 +11,8 @@ const AdminDetilTransaksi = ({
   const [btnDisable, setBtnDisable] = useState(false);
   const [loading, setLoading] = useState(false);
   const [internalServerError, setInternalServerError] = useState("");
+  const [showRejectComment, setshowRejectComment] = useState(false);
+  const [showRejectPopUp, setshowRejectPopUp] = useState(false);
 
   const btnAccept = async (id) => {
     try {
@@ -74,20 +76,43 @@ const AdminDetilTransaksi = ({
       {data.statusTransaksi ? (
         ""
       ) : (
-        <div className="flex justify-between mt-10">
-          <button
-            className="bg-red-500 py-2 px-4 rounded-md text-white"
-            disabled={btnDisable}
-          >
-            Reject
-          </button>
-          <button
-            className="bg-green-500 py-2 px-4 rounded-md text-white"
-            disabled={btnDisable}
-            onClick={() => btnAccept(data._id)}
-          >
-            {loading ? <Spinner /> : " Accept"}
-          </button>
+        <div className="mt-10">
+          {showRejectComment?
+          <div>
+            <form className="flex flex-col mb-5 gap-2"
+            onSubmit={
+              (e)=>{
+                e.preventDefault()
+                setshowRejectPopUp(!showRejectPopUp)
+              }
+            }
+            >
+              <label htmlFor="reject-comment">Reject Comment</label>
+              <p className="text-red-500 text-xs font-semibold">* Please enter the reason why this transaction was rejected</p>
+              <input type="text" id="reject-comment" className="border border-slate-300 rounded-sm px-3 py-1" required/>
+              <button type="submit" className="bg-red-500 rounded-md py-3 text-white font-semibold mt-3">
+                Confirm Reject
+              </button>
+            </form>
+          </div>
+          :
+          <div className="flex justify-between">
+            <button
+              className="bg-red-500 py-2 px-4 rounded-md text-white"
+              disabled={btnDisable}
+              onClick={() => setshowRejectComment(!showRejectComment)}
+            >
+              Reject
+            </button>
+            <button
+              className="bg-green-500 py-2 px-4 rounded-md text-white"
+              disabled={btnDisable}
+              onClick={() => btnAccept(data._id)}
+            >
+              {loading ? <Spinner /> : " Accept"}
+            </button>
+          </div>
+          }
         </div>
       )}
       <div className=" flex justify-center mt-10">
@@ -99,6 +124,22 @@ const AdminDetilTransaksi = ({
           Kembali
         </button>
       </div>
+      {showRejectPopUp ?
+        // pop up confirm reject
+        <div className="layar-hitam absolute z-[99] left-0 top-0 right-0 bottom-0 flex items-center justify-center text-center">
+          <div className="bg-white p-10 rounded-lg">
+            <i className="fa-solid fa-triangle-exclamation text-red-600 text-7xl mb-10"></i>
+            <h1>Are You Sure Want To Reject This Transaction</h1>
+            <h2>This action cannot be undone</h2>
+            <div className="flex flex-col gap-3">
+              <button className="bg-red-500 py-2 font-semibold text-white rounded-sm">Yes, reject this transaction</button>
+              <a href="/admin" className="bg-blue-500 py-2 font-semibold text-white rounded-sm">Cancel</a>
+            </div>
+          </div>
+        </div>
+        :
+        ""
+      }
     </div>
   );
 };
