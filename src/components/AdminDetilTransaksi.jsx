@@ -31,6 +31,7 @@ const AdminDetilTransaksi = ({
       console.log(err);
     }
   };
+
   return internalServerError ? (
     <div>
       <p className="text-red-500">{internalServerError}</p>
@@ -70,21 +71,25 @@ const AdminDetilTransaksi = ({
         <p className="text-center">:</p>
         <p className="col-span-5">{data.buktiHash}</p>
       </div>
-      <div className="flex justify-between mt-10">
-        <button
-          className="bg-red-500 py-2 px-4 rounded-md text-white"
-          disabled={btnDisable}
-        >
-          Reject
-        </button>
-        <button
-          className="bg-green-500 py-2 px-4 rounded-md text-white"
-          disabled={btnDisable}
-          onClick={() => btnAccept(data._id)}
-        >
-          {loading ? <Spinner /> : " Accept"}
-        </button>
-      </div>
+      {data.statusTransaksi ? (
+        ""
+      ) : (
+        <div className="flex justify-between mt-10">
+          <button
+            className="bg-red-500 py-2 px-4 rounded-md text-white"
+            disabled={btnDisable}
+          >
+            Reject
+          </button>
+          <button
+            className="bg-green-500 py-2 px-4 rounded-md text-white"
+            disabled={btnDisable}
+            onClick={() => btnAccept(data._id)}
+          >
+            {loading ? <Spinner /> : " Accept"}
+          </button>
+        </div>
+      )}
       <div className=" flex justify-center mt-10">
         <button
           className="bg-blue-500 py-3 w-full rounded-md text-white"
