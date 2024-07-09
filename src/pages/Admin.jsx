@@ -40,8 +40,8 @@ const Admin = () => {
       <Helmet>
         <title>Admin</title>
       </Helmet>
-      <section className="flex justify-center h-[100vh] w-[100vw] bg-black">
-        <section className="relative bg-white border border-black py-14 px-8 w-[640px] rounded-lg flex flex-col gap-5 mx-auto max-h-screen">
+      <section className="flex justify-center h-[100vh] w-[100vw] bg-black overflow-hidden">
+        <section className="relative bg-white border border-black py-14 px-8 w-[640px] rounded-lg flex flex-col gap-5 mx-auto max-h-screen overflow-y-scroll">
           <div>
             <h1 className="font-semibold text-center">Admin Page</h1>
             <div className="flex justify-end text-sm">
