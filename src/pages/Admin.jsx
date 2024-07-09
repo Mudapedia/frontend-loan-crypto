@@ -4,6 +4,7 @@ import AdminAPi from "../../api/admin";
 import AdminDetilTransaksi from "../components/AdminDetilTransaksi";
 import CardTransaction from "../components/CardTransaction";
 import LoadingCardTransaction from "../components/LoadingCardTransaction";
+import { useNavigate } from "react-router-dom";
 
 const Admin = () => {
   // const [transactionFinish, setTransactionFinish] = useState([]);
@@ -14,19 +15,25 @@ const Admin = () => {
   const [dataFilter, setDataFilter] = useState("pending");
   const [cardLoading, setCardLoading] = useState(true);
 
+  const redirect = useNavigate();
+
   useEffect(() => {
     if (dataFilter == "pending") {
-      AdminAPi.getTransactionNotFinish().then(({ data }) => {
-        setData(data.data);
-        setCardLoading(false);
-      });
+      AdminAPi.getTransactionNotFinish()
+        .then(({ data }) => {
+          setData(data.data);
+          setCardLoading(false);
+        })
+        .catch(() => redirect("/login"));
     } else {
-      AdminAPi.getTransactionFinish().then(({ data }) => {
-        setData(data.data);
-        setCardLoading(false);
-      });
+      AdminAPi.getTransactionFinish()
+        .then(({ data }) => {
+          setData(data.data);
+          setCardLoading(false);
+        })
+        .catch(() => redirect("/login"));
     }
-  }, [dataFilter]);
+  }, [dataFilter, redirect]);
 
   return (
     <HelmetProvider>
@@ -119,7 +126,6 @@ const Admin = () => {
             <AdminDetilTransaksi
               data={detailData}
               setShowDetail={setShowDetail}
-              setTransactionNotFinish={data}
             />
           ) : (
             ""

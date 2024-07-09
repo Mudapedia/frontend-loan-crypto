@@ -8,21 +8,20 @@ const CardTransaction = ({
   transactionDate,
   transactionHour,
 }) => {
-  const [status, setStatus] = useState('Pending');
-  const [statusColor, setStatusColor] = useState('bg-yellow-300');
+  const [status, setStatus] = useState("Pending");
+  const [statusColor, setStatusColor] = useState("bg-yellow-300");
 
-  useEffect(()=>{
-
-    if(v.statusTransaksi){
-      if(v.rejectComment){
+  useEffect(() => {
+    if (v.statusTransaksi) {
+      if (v.rejectComment) {
         setStatus("Finished");
         setStatusColor("bg-green-400");
-      }else{
+      } else {
         setStatus("Rejected");
         setStatusColor("bg-red-400");
       }
     }
-  },[v.statusTransaksi, v.rejectComment])
+  }, [v.statusTransaksi, v.rejectComment]);
 
   return (
     <div
@@ -34,7 +33,9 @@ const CardTransaction = ({
         setDetailData(v);
       }}
     >
-      <div className={`absolute ${statusColor} py-1 px-2 right-3 top-3 rounded-md font-semibold text-sm`}>
+      <div
+        className={`absolute ${statusColor} py-1 px-2 right-3 top-3 rounded-md font-semibold text-sm`}
+      >
         <p>{status}</p>
       </div>
 
