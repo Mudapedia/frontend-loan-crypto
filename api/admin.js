@@ -10,6 +10,9 @@ class AdminAPi {
   static finishTransaction(id) {
     return axiosIns.put(`/admin/finished-transaction/${id}`);
   }
+  static rejectAndComment(id, body) {
+    return axiosIns.put(`/admin/comment/${id}`, body);
+  }
 }
 
 export default AdminAPi;

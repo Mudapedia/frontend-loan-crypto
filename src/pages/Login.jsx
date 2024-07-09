@@ -38,6 +38,7 @@ const Login = () => {
         redirect("/admin");
       }, 1000);
     } catch (err) {
+      console.log(err);
       setBtnDisable(false);
       setLoading(false);
       setMessage({
