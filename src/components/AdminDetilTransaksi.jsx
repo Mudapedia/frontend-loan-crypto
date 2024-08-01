@@ -91,6 +91,15 @@ const AdminDetilTransaksi = ({ data, setShowDetail }) => {
         <p className="col-span-2">Fee Payment Hash</p>
         <p className="text-center">:</p>
         <p className="col-span-5">{data.buktiHash}</p>
+        {data.rejectComment ? (
+          <>
+            <p className="col-span-2">Rejected comment</p>
+            <p className="text-center">:</p>
+            <p className="col-span-5">{data.rejectComment}</p>
+          </>
+        ) : (
+          ""
+        )}
       </div>
       {data.statusTransaksi ? (
         ""

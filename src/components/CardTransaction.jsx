@@ -14,11 +14,11 @@ const CardTransaction = ({
   useEffect(() => {
     if (v.statusTransaksi) {
       if (v.rejectComment) {
-        setStatus("Finished");
-        setStatusColor("bg-green-400");
-      } else {
         setStatus("Rejected");
         setStatusColor("bg-red-400");
+      } else {
+        setStatus("Finished");
+        setStatusColor("bg-green-400");
       }
     }
   }, [v.statusTransaksi, v.rejectComment]);
